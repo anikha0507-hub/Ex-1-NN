@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>Anikha Pillai</H3>
+<H3>212225230016.</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>30.10.2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,39 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+df.isnull().sum()
+
+print(df.duplicated().sum())
+
+df=df.drop(['Surname', 'Geography','Gender'], axis=1) 
+
+scaler=StandardScaler()                                
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values  
+
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)  
+
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)    
+
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="1237" height="262" alt="image" src="https://github.com/user-attachments/assets/e1cc4e2e-a0d2-4249-a225-e1d2c443933e" />
+<img width="777" height="395" alt="image" src="https://github.com/user-attachments/assets/74765b6e-cee5-41ae-bb5e-37f0899588bf" />
+<img width="746" height="567" alt="image" src="https://github.com/user-attachments/assets/00acbffb-c596-4ffd-a0e5-465148ef3a37" />
+<img width="652" height="152" alt="image" src="https://github.com/user-attachments/assets/b4bc9eb5-2a9a-4654-8655-662ba97276b4" />
+
 
 
 ## RESULT:
